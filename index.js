@@ -34,6 +34,7 @@ const ScrollableTabView = createReactClass({
   propTypes: {
     tabBarPosition: PropTypes.oneOf(['top', 'bottom', 'overlayTop', 'overlayBottom', ]),
     initialPage: PropTypes.number,
+    keyboardShouldPersistTaps: PropTypes.oneOf(['always', 'handled', 'never', ]),
     page: PropTypes.number,
     onChangeTab: PropTypes.func,
     onScroll: PropTypes.func,
@@ -221,6 +222,7 @@ const ScrollableTabView = createReactClass({
       return <Animated.ScrollView
         horizontal
         pagingEnabled
+        keyboardShouldPersistTaps={this.props.keyboardShouldPersistTaps || 'handled'}
         automaticallyAdjustContentInsets={false}
         contentOffset={{ x: this.props.initialPage * this.state.containerWidth, }}
         ref={(scrollView) => { this.scrollView = scrollView; }}
